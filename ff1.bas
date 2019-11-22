@@ -1,6 +1,6 @@
 REM Setup
 RANDOMIZE
-BORDER 0: BRIGHT 1: PAPER 0: INK 4: CLS
+BORDER 7: PAPER 7: INK 0: CLS
 DIM n$(20)
 DIM i(20) AS UBYTE
 DIM x,y,z,c AS UBYTE
@@ -19,28 +19,28 @@ LET n$(1)="daph2theB"
 LET n$(2)="CommodoreBlog"
 LET n$(3)="Lord_Arse"
 LET n$(4)="spectrum48k"
-LET n$(5)="mrbiffo"
+LET n$(5)="thatbunty"
 LET n$(6)="rexthedogge"
 LET n$(7)="retro_gerry"
 LET n$(8)="Deanydotcom"
 LET n$(9)="RetroManiaGT1"
 LET n$(10)="rEtRo_sPexX"
 LET n$(11)="zx81adventures"
-LET n$(12)="AbsoluteKaty"
+LET n$(12)="JAMOGRAD"
 LET n$(13)="stewie55uk"
 LET n$(14)="FirepowerGaming"
 LET n$(15)="rhayadercompute"
 LET n$(16)="KaraTheBroken"
 LET n$(17)="AfRetro"
 LET n$(18)="snowman8679"
-LET n$(19)="Segamastertim"
+LET n$(19)="NikkiAndBunty"
 LET n$(20)="Tamaracade1"
 'GOTO 5
-LET n$(1)="JAMOGRAD"
+LET n$(1)="AbsoluteKaty"
 LET n$(2)="iHarbonaut"
 LET n$(3)="saucerbrain"
-LET n$(4)="thatbunty"
-LET n$(5)="NikkiAndBunty"
+LET n$(4)="mrbiffo"
+LET n$(5)="Segamastertim"
 LET n$(6)="RussellRiker"
 LET n$(7)="florinthedwarf"
 LET n$(8)="_gazmarshall"
@@ -61,7 +61,7 @@ LET n$(1)="GDHCAMERO"
 LET n$(2)="RetroGamingRVG"
 LET n$(3)="8_16_32bit"
 LET n$(4)="GeekMid"
-LET n$(5)="000Angus000"
+LET n$(5)="greg_siddons"
 LET n$(6)="TheRetroManCave"
 LET n$(7)="SquaredSeven"
 LET n$(8)="60sPsychoMods"
@@ -93,33 +93,28 @@ FOR x=1 TO 20
         END IF
     NEXT y
     REM Plop the index in the index array
-    LET i(x)=c
+    IF i(x)=0 THEN LET i(x)=c: END IF
 NEXT x
 
-REM Loopy madness!
+REM Loopy the people
 FOR y=1 TO 20
     REM Create a string with our @ and the current person
     LET s$=CHR 144 + n$(i(y))
-    REM Set number of times random characters iterate
-    LET cc=5
-    REM If its a short name, double the iterations
-    IF LEN s$ < 6 THEN LET cc=cc*2: END IF
-    REM Loop string
-    FOR c=0 TO LEN s$-1
-        REM Loop iterations
-        FOR z=0 TO cc
-            REM Loop current string position to end of string
-            FOR x=c TO LEN s$-1
-                REM Pick a random character in the range of 32-128
-                LET cb=0
-                DO UNTIL cb>32
-                   LET cb=RND *128
-                LOOP
-                REM Print out random character
-                PRINT AT y,x;BRIGHT RND *2; CHR$ cb
-            NEXT x
-        NEXT z
-        REM Print out "revealed" strings
-        PRINT AT y,c;s$(c TO c)
-    NEXT c
+    LET c=LEN s$
+    LET b$=""
+    REM Create an empty string the length of the current person
+    REM WARNING! This is not the best way of doing this!
+    FOR x=1 TO c
+        LET b$=b$+" "
+    NEXT x
+    REM Alternate colours
+    IF y MOD 2 = 0 THEN LET ik=2
+    ELSE LET ik=5: END IF
+    REM Loop down the screen
+    FOR x=0 TO 20-y
+        PRINT AT x,0;b$
+        PRINT INK ik;AT x+1,0;s$
+        PAUSE 2
+    NEXT x
+    PAUSE 8
 NEXT y
