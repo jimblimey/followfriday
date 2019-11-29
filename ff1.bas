@@ -5,6 +5,7 @@ DIM n$(20)
 DIM i(20) AS UBYTE
 DIM x,y,z,c AS UBYTE
 DIM cb,cc AS UBYTE
+DIM ik AS UBYTE
 REM Custom @ because the Speccy one is naff
 POKE USR "A"+0, BIN 00111100
 POKE USR "A"+1, BIN 01000010
@@ -108,8 +109,11 @@ FOR y=1 TO 20
         LET b$=b$+" "
     NEXT x
     REM Alternate colours
-    IF y MOD 2 = 0 THEN LET ik=2
-    ELSE LET ik=5: END IF
+    IF y MOD 2 = 0 THEN 
+       LET ik=2
+    ELSE 
+       LET ik=5
+    END IF
     REM Loop down the screen
     FOR x=0 TO 20-y
         PRINT AT x,0;b$
