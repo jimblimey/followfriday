@@ -1,11 +1,12 @@
 REM Setup
-RANDOMIZE
 BORDER 0: PAPER 0: INK 7: BRIGHT 1: CLS
 POKE 23607,(@fontdata-256)/256
 POKE 23606,@fontdata-256*(@fontdata/256)
 DIM n$(20)
 DIM i(20) AS UBYTE
-DIM x,y,c,cc,cb,cl,lc AS UBYTE
+DIM x,y AS BYTE
+DIM c,cb,cl,lc AS UBYTE
+DIM cc AS INTEGER
 
 REM Add the people, uncomment the required GOTO to use a specific group
 LET n$(1)="daph2theB"
@@ -65,7 +66,7 @@ LET n$(12)="GAMETelford"
 LET n$(13)="TristaBytes"
 LET n$(14)="Manhydra"
 LET n$(15)="shieladixon"
-LET n$(16)="RetroBrothers"
+LET n$(16)="SJP176"
 LET n$(17)="SpectrumTinted"
 LET n$(18)="theretrobyte"
 LET n$(19)="0xC0DE6502"
@@ -76,104 +77,106 @@ REM Functions and data
 fontdata:
 ASM
   defb 0,0,0,0,0,0,0,0
-  defb 48,120,120,48,48,0,48,0
-  defb 108,108,108,0,0,0,0,0
-  defb 108,108,254,108,254,108,108,0
-  defb 48,124,192,120,12,248,48,0
-  defb 0,198,204,24,48,102,198,0
-  defb 56,108,56,118,220,204,118,0
-  defb 96,96,192,0,0,0,0,0
-  defb 24,48,96,96,96,48,24,0
-  defb 96,48,24,24,24,48,96,0
-  defb 0,102,60,255,60,102,0,0
-  defb 0,48,48,252,48,48,0,0
-  defb 0,0,0,0,0,48,48,96
-  defb 0,0,0,252,0,0,0,0
-  defb 0,0,0,0,0,48,48,0
-  defb 6,12,24,48,96,192,128,0
-  defb 254,134,142,210,226,194,254,0
-  defb 16,16,16,48,48,48,48,0
-  defb 60,70,6,12,48,96,126,0
-  defb 60,70,6,28,2,98,124,0
-  defb 76,76,68,68,124,12,12,0
-  defb 126,64,124,2,2,98,124,0
-  defb 60,102,64,124,98,98,60,0
-  defb 124,12,4,4,12,12,12,0
-  defb 60,70,70,60,98,98,60,0
-  defb 60,70,70,62,2,98,60,0
-  defb 0,48,48,0,0,48,48,0
-  defb 0,48,48,0,0,48,48,96
+  defb 32,32,32,32,0,0,32,0
+  defb 80,80,80,0,0,0,0,0
+  defb 80,80,248,80,248,80,80,0
+  defb 32,120,160,112,40,240,32,0
+  defb 192,200,16,32,64,152,24,0
+  defb 64,160,64,168,144,152,96,0
+  defb 16,32,64,0,0,0,0,0
+  defb 16,32,64,64,64,32,16,0
+  defb 64,32,16,16,16,32,64,0
+  defb 32,168,112,32,112,168,32,0
+  defb 0,32,32,248,32,32,0,0
+  defb 0,0,0,0,0,32,32,64
+  defb 0,0,0,120,0,0,0,0
+  defb 0,0,0,0,0,96,96,0
+  defb 0,0,8,16,32,64,128,0
+  defb 112,136,152,168,200,136,112,0
+  defb 32,96,160,32,32,32,240,0
+  defb 112,136,8,16,96,128,248,0
+  defb 112,136,8,48,8,136,112,0
+  defb 16,48,80,144,248,16,16,0
+  defb 248,128,224,16,8,16,224,0
+  defb 48,64,128,240,136,136,112,0
+  defb 248,136,16,32,32,32,32,0
+  defb 112,136,136,112,136,136,112,0
+  defb 112,136,136,120,8,16,96,0
+  defb 0,0,32,0,0,32,0,0
+  defb 0,0,32,0,0,32,32,64
   defb 24,48,96,192,96,48,24,0
-  defb 0,0,252,0,0,252,0,0
-  defb 96,48,24,12,24,48,96,0
-  defb 120,204,12,24,48,0,48,0
-  defb 124,198,222,222,222,192,120,0
-  defb 126,70,66,66,126,98,98,0
-  defb 124,76,68,126,98,98,126,0
-  defb 126,70,64,96,96,98,126,0
-  defb 124,70,70,66,98,98,124,0
-  defb 126,70,64,120,96,98,126,0
-  defb 126,70,64,120,96,96,96,0
-  defb 126,70,64,78,98,98,126,0
-  defb 76,76,68,124,100,100,100,0
-  defb 16,16,16,24,24,24,24,0
-  defb 6,6,2,2,98,98,126,0
-  defb 70,70,76,120,100,98,98,0
-  defb 64,64,64,96,96,96,126,0
-  defb 198,238,190,146,210,194,194,0
-  defb 70,70,98,82,106,102,98,0
-  defb 126,70,70,98,98,98,126,0
-  defb 126,70,70,126,96,96,96,0
-  defb 126,70,70,98,98,126,28,4
-  defb 126,70,70,124,104,100,98,0
-  defb 126,70,96,24,6,98,126,0
-  defb 126,22,16,24,24,24,24,0
-  defb 70,70,66,98,98,98,126,0
-  defb 70,70,70,66,100,56,16,0
-  defb 134,134,130,210,250,238,198,0
-  defb 134,134,76,48,104,228,194,0
-  defb 70,70,66,60,24,24,24,0
-  defb 254,6,8,16,32,192,254,0
-  defb 120,96,96,96,96,96,120,0
-  defb 192,96,48,24,12,6,2,0
-  defb 120,24,24,24,24,24,120,0
-  defb 16,56,108,198,0,0,0,0
-  defb 0,0,0,0,0,0,0,255
-  defb 48,48,24,0,0,0,0,0
-  defb 0,0,126,6,126,98,126,0
-  defb 64,64,64,126,98,98,126,0
-  defb 0,0,126,70,96,96,126,0
-  defb 6,6,2,126,98,98,126,0
-  defb 0,0,126,70,126,96,126,0
-  defb 12,28,32,120,96,96,96,0
-  defb 0,0,126,70,66,126,6,120
-  defb 64,64,64,126,98,98,98,0
-  defb 16,0,16,16,24,24,24,0
-  defb 12,0,12,4,4,100,100,124
-  defb 64,64,70,76,120,100,98,0
-  defb 16,16,16,16,24,24,24,0
-  defb 0,0,254,150,150,210,210,0
-  defb 0,0,126,70,98,98,98,0
-  defb 0,0,126,70,98,98,126,0
-  defb 0,0,126,70,66,126,96,96
-  defb 0,0,126,70,66,126,2,2
-  defb 0,0,126,70,96,96,96,0
-  defb 0,0,124,64,124,4,124,0
-  defb 16,16,60,16,16,24,28,0
-  defb 0,0,70,70,98,98,126,0
-  defb 0,0,70,70,102,52,24,0
-  defb 0,0,134,150,210,254,108,0
-  defb 0,0,70,44,24,52,98,0
-  defb 0,0,70,70,98,126,2,124
-  defb 0,0,126,12,24,48,126,0
-  defb 28,48,48,224,48,48,28,0
-  defb 24,24,24,0,24,24,24,0
-  defb 224,48,48,28,48,48,224,0
-  defb 118,220,0,0,0,0,0,0
-  defb 0,16,56,108,198,198,254,0
+  defb 0,0,248,0,248,0,0,0
+  defb 192,96,48,24,48,96,192,0
+  defb 112,136,8,16,32,0,32,0
+  defb 112,136,8,72,168,168,112,0
+  defb 32,80,136,136,248,136,136,0
+  defb 240,72,72,112,72,72,240,0
+  defb 48,72,128,128,128,72,48,0
+  defb 224,80,72,72,72,80,224,0
+  defb 248,128,128,240,128,128,248,0
+  defb 248,128,128,240,128,128,128,0
+  defb 112,136,128,184,136,136,112,0
+  defb 136,136,136,248,136,136,136,0
+  defb 112,32,32,32,32,32,112,0
+  defb 56,16,16,16,144,144,96,0
+  defb 136,144,160,192,160,144,136,0
+  defb 128,128,128,128,128,128,248,0
+  defb 136,216,168,168,136,136,136,0
+  defb 136,200,200,168,152,152,136,0
+  defb 112,136,136,136,136,136,112,0
+  defb 240,136,136,240,128,128,128,0
+  defb 112,136,136,136,168,144,104,0
+  defb 240,136,136,240,160,144,136,0
+  defb 112,136,128,112,8,136,112,0
+  defb 248,32,32,32,32,32,32,0
+  defb 136,136,136,136,136,136,112,0
+  defb 136,136,136,136,80,80,32,0
+  defb 136,136,136,168,168,216,136,0
+  defb 136,136,80,32,80,136,136,0
+  defb 136,136,136,112,32,32,32,0
+  defb 248,8,16,32,64,128,248,0
+  defb 112,64,64,64,64,64,112,0
+  defb 0,0,128,64,32,16,8,0
+  defb 112,16,16,16,16,16,112,0
+  defb 32,80,136,0,0,0,0,0
+  defb 0,0,0,0,0,0,248,0
+  defb 0,0,112,136,128,136,112,32
+  defb 0,0,112,8,120,136,120,0
+  defb 128,128,176,200,136,200,176,0
+  defb 0,0,112,136,128,136,112,0
+  defb 8,8,104,152,136,152,104,0
+  defb 0,0,112,136,248,128,112,0
+  defb 16,40,32,248,32,32,32,0
+  defb 0,0,104,152,152,104,8,112
+  defb 128,128,240,136,136,136,136,0
+  defb 32,0,96,32,32,32,112,0
+  defb 16,0,48,16,16,16,144,96
+  defb 64,64,72,80,96,80,72,0
+  defb 96,32,32,32,32,32,112,0
+  defb 0,0,208,168,168,168,168,0
+  defb 0,0,176,200,136,136,136,0
+  defb 0,0,112,136,136,136,112,0
+  defb 0,0,176,200,200,176,128,128
+  defb 0,0,104,152,152,104,8,8
+  defb 0,0,176,200,128,128,128,0
+  defb 0,0,120,128,112,8,240,0
+  defb 64,64,240,64,64,72,48,0
+  defb 0,0,144,144,144,144,104,0
+  defb 0,0,136,136,136,80,32,0
+  defb 0,0,136,168,168,168,80,0
+  defb 0,0,136,80,32,80,136,0
+  defb 0,0,136,136,152,104,8,112
+  defb 0,0,248,16,32,64,248,0
+  defb 24,32,32,64,32,32,24,0
+  defb 32,32,32,0,32,32,32,0
+  defb 192,32,32,16,32,32,192,0
+  defb 48,72,128,128,128,72,48,96
+  defb 0,0,32,80,248,0,0,0
 END ASM
 
 start:
+REM Not convinced RANDOMIZE actually does anything!
+RANDOMIZE
 REM Pick order
 FOR x=1 TO 20
     REM Pick a number
@@ -191,35 +194,46 @@ FOR x=1 TO 20
     END IF
 NEXT x
 
-PRINT AT 0,0; INK 3; BRIGHT 1;"#ff orderer by Jim Blimey"
-
 REM Loopy the people
-FOR y=1 TO 20
+FOR c=1 TO 20
     REM Create a string with our @ and the current person
-    LET s$="@" + n$(i(y))
-    REM Set number of times random characters iterate
-    LET cc=3
-    REM If its a short name, double the iterations
-    IF LEN s$ < 6 THEN LET cc=cc*2
-    REM Pick random colour for current line
+    LET s$="@" + n$(i(c))
+    REM Go in from the top or bottom depending on where we are in the list
+    REM (This is nasty, could be improved greatly with time!)
+    IF c>10 THEN
+      FOR y=0 TO c+1
+        PRINT AT y,31-(LEN s$);s$
+        IF y>0 THEN PRINT INK 0;AT y-1,31-(LEN s$);s$
+        PAUSE 2
+      NEXT y
+    ELSE
+      FOR y=23 TO c+1 STEP -1
+        PRINT AT y,31-(LEN s$);s$
+        IF y<23 THEN PRINT INK 0;AT y+1,31-(LEN s$);s$
+        PAUSE 2
+      NEXT y
+    END IF
+    FOR x=31-LEN s$ TO 0 STEP -1
+        PRINT AT c+1,x;s$
+        IF x<31-(LEN s$) THEN PRINT AT c+1,x+(LEN s$);" "
+        PAUSE 2
+    NEXT x
+    PAUSE 5
+NEXT c
+REM Restore default font because the BOLD thing doesn't work with custom font
+POKE 23606,0:POKE 23607,60
+PRINT AT 0,0; BOLD 1; INK 7; BRIGHT 1;"#FF orderer by Jim Blimey"
+REM Back to custom font
+POKE 23607,(@fontdata-256)/256:POKE 23606,@fontdata-256*(@fontdata/256)
+REM Loop to change colours
+FOR cc=0 TO 500
+    LET y=(RND*20)+1
+    LET s$="@"+n$(i(y))
     pc:
-    LET cl=RND*6+1
+    LET cl=(RND*6)+1
     IF cl=lc THEN GOTO pc
     LET lc=cl
-    REM Loop string
-    FOR c=0 TO LEN s$-1
-        REM Loop iterations
-        FOR z=0 TO cc
-            REM Loop current string position to end of string
-            FOR x=c TO LEN s$-1
-                REM Pick a random character in the range of 32-128
-                LET cb=RND*(128-32)+32
-                REM Print out random character
-                PRINT AT y+1,x;INK RND*6+1; BRIGHT RND *2; CHR$ cb
-            NEXT x
-        NEXT z
-        REM Print out "revealed" strings
-        PRINT AT y+1,c;INK cl; BRIGHT 1; s$(c TO c)
-    NEXT c
-NEXT y
-
+    PRINT INK cl;AT y+1,0;s$
+NEXT cc
+REM Restore default font for no reason reason this time
+POKE 23606,0:POKE 23607,60
