@@ -1,29 +1,40 @@
-' Setup
-BORDER 0: PAPER 0: INK 3: BRIGHT 1: CLS
+REM Setup
+BORDER 0: PAPER 0: INK 0: BRIGHT 1: CLS
 
 DIM n$(20)
 DIM i(20) AS UBYTE
-DIM x,c,cl,cr,lc,r AS UBYTE
+DIM x,y,y1 AS BYTE
+DIM c,cl,lc AS UBYTE
+DIM cc,cb AS INTEGER
 
-POKE USR "A"+0,BIN 01000000
-POKE USR "A"+1,BIN 10100000
-POKE USR "A"+2,BIN 10111110
-POKE USR "A"+3,BIN 01000001
-POKE USR "A"+4,BIN 01000001
-POKE USR "A"+5,BIN 10111110
-POKE USR "A"+6,BIN 10100000
-POKE USR "A"+7,BIN 01000000
+POKE USR "A"+0, BIN 00001000
+POKE USR "A"+1, BIN 00010100
+POKE USR "A"+2, BIN 00010100
+POKE USR "A"+3, BIN 00101010
+POKE USR "A"+4, BIN 00101010
+POKE USR "A"+5, BIN 01000001
+POKE USR "A"+6, BIN 01001001
+POKE USR "A"+7, BIN 01111111
 
-POKE USR "B"+0, BIN 00001000
-POKE USR "B"+1, BIN 00010100
-POKE USR "B"+2, BIN 00010100
-POKE USR "B"+3, BIN 00101010
-POKE USR "B"+4, BIN 00101010
-POKE USR "B"+5, BIN 01000001
-POKE USR "B"+6, BIN 01001001
-POKE USR "B"+7, BIN 01111111
+POKE USR "B"+0, BIN 01010101
+POKE USR "B"+1, BIN 10101010
+POKE USR "B"+2, BIN 01010101
+POKE USR "B"+3, BIN 10101010
+POKE USR "B"+4, BIN 01010101
+POKE USR "B"+5, BIN 10101010
+POKE USR "B"+6, BIN 01010101
+POKE USR "B"+7, BIN 10101010
 
-' Add the people, uncomment the required GOTO to use a specific group
+POKE USR "C"+0, BIN 00111100
+POKE USR "C"+1, BIN 01000010
+POKE USR "C"+2, BIN 10011010
+POKE USR "C"+3, BIN 10101010
+POKE USR "C"+4, BIN 10111100
+POKE USR "C"+5, BIN 10000000
+POKE USR "C"+6, BIN 01111110
+POKE USR "C"+7, BIN 00000000
+
+REM Add the people, uncomment the required GOTO to use a specific group
 LET n$(1)="DaphBlake2"
 LET n$(2)="CommodoreBlog"
 LET n$(3)="Lord_Arse"
@@ -87,7 +98,37 @@ LET n$(18)="theretrobyte"
 LET n$(19)="0xC0DE6502"
 LET n$(20)="Ewan"
 GOTO start
-' Functions and data
+REM Functions and data
+
+SUB CentreText(s$ AS STRING, y AS UBYTE, c AS UBYTE, br AS UBYTE)
+    DIM x AS UBYTE
+    LET x = 16 - (LEN(s$) / 2)
+    PRINT INK c; BRIGHT br; AT y,x; s$
+END SUB
+
+SUB DrawSemi(r AS FLOAT, xc AS FLOAT, yc AS FLOAT, i2 AS UBYTE, p AS UBYTE, c AS UBYTE)
+    DIM x,y,d AS FLOAT
+    LET x=0: LET y=r
+    LET d=3-2*r
+    DoDrawBlock(xc,yc,x,y,i2,p,c)
+    s:
+    LET x=x+1
+    IF d>0 THEN
+       LET y=y-1
+       LET d=d+4*(x-y)+10
+    ELSE
+        LET d=d+4*x+6
+    END IF
+    DoDrawBlock(xc,yc,x,y,i2,p,c)
+    IF y>=x THEN GO TO s
+END SUB
+
+SUB DoDrawBlock(xc AS FLOAT, yc AS FLOAT, x AS FLOAT, y AS FLOAT, i2 AS UBYTE, p AS UBYTE, c AS UBYTE) 
+    IF yc-y < 23 AND xc+x < 32 AND yc-y >= 0 AND xc+x >= 0 THEN PRINT PAPER p;INK i2;AT yc-y,xc+x;CHR$ c
+    IF yc-y < 23 AND xc-x < 32 AND yc-y >= 0 AND xc-x >= 0 THEN PRINT PAPER p;INK i2;AT yc-y,xc-x;CHR$ c
+    IF yc-x < 23 AND xc+y < 32 AND yc-x >= 0 AND xc+y >= 0 THEN PRINT PAPER p;INK i2;AT yc-x,xc+y;CHR$ c
+    IF yc-x < 23 AND xc-y < 32 AND yc-x >= 0 AND xc-y >= 0 THEN PRINT PAPER p;INK i2;AT yc-x,xc-y;CHR$ c
+END SUB
 
 start:
 RANDOMIZE
@@ -103,136 +144,120 @@ FOR x=1 TO 20
         END IF
     NEXT y
     ' Plop the index in the index array
-    LET i(x)=x
+    LET i(x)=c
 NEXT x
 
-POKE 23607,(@fontdata-256)/256
-POKE 23606,@fontdata-256*(@fontdata/256)
-' Loopy the people
+GOTO rainbow
+
+FOR x=1 TO 21
+    IF x <= 3 THEN
+      FOR y=0 TO 31
+        PRINT PAPER 2; BRIGHT 1; AT x,y;" "
+      NEXT y
+    END IF
+    IF x > 3 AND x <= 6 THEN
+      FOR y=0 TO 31
+        PRINT PAPER 2; INK 6; BRIGHT 1; AT x,y;CHR$ 145
+      NEXT y
+    END IF
+    IF x > 6 AND x <= 9 THEN
+      FOR y=0 TO 31
+        PRINT PAPER 6; BRIGHT 1; AT x,y;" "
+      NEXT y
+    END IF
+    IF x > 9 AND x <= 12 THEN
+      FOR y=0 TO 31
+        PRINT PAPER 4; BRIGHT 1; AT x,y;" "
+      NEXT y
+    END IF
+    IF x > 12 AND x <= 15 THEN
+      FOR y=0 TO 31
+        PRINT PAPER 5; BRIGHT 1; AT x,y;" "
+      NEXT y
+    END IF
+    IF x > 15 AND x <= 18 THEN
+      FOR y=0 TO 31
+        PRINT PAPER 1; BRIGHT 1; AT x,y;" "
+      NEXT y
+    END IF
+    IF x > 18 THEN
+      FOR y=0 TO 31
+        PRINT PAPER 1; INK 2; BRIGHT 1; AT x,y;CHR$ 145
+      NEXT y
+    END IF
+NEXT x
+
+rainbow:
+DrawSemi(15,15,18,2,0,143)
+DrawSemi(14,15,18,2,0,143)
+PRINT AT 15,2;INK 2; CHR$ 143
+PRINT AT 11,3;INK 2; CHR$ 143
+PRINT AT 10,5;INK 2; CHR$ 143
+PRINT AT 9,6;INK 2; CHR$ 143
+PRINT AT 8,7;INK 2; CHR$ 143
+PRINT AT 6,8;INK 2; CHR$ 143
+PRINT AT 5,12;INK 2; CHR$ 143
+PRINT AT 5,18;INK 2; CHR$ 143
+PRINT AT 6,22;INK 2; CHR$ 143
+PRINT AT 8,23;INK 2; CHR$ 143
+PRINT AT 9,24;INK 2; CHR$ 143
+PRINT AT 10,25;INK 2; CHR$ 143
+PRINT AT 11,27;INK 2; CHR$ 143
+PRINT AT 15,28;INK 2; CHR$ 143
+DrawSemi(13,15,18,2,6,145)
+DrawSemi(12,15,18,2,6,145)
+PRINT AT 13,4;INK 2; PAPER 6; CHR$ 145
+PRINT AT 12,6;INK 2; PAPER 6; CHR$ 145
+PRINT AT 11,7;INK 2; PAPER 6; CHR$ 145
+PRINT AT 10,8;INK 2; PAPER 6; CHR$ 145
+PRINT AT 9,9;INK 2; PAPER 6; CHR$ 145
+PRINT AT 7,10;INK 2; PAPER 6; CHR$ 145
+PRINT AT 7,20;INK 2; PAPER 6; CHR$ 145
+PRINT AT 9,21;INK 2; PAPER 6; CHR$ 145
+PRINT AT 10,22;INK 2; PAPER 6; CHR$ 145
+PRINT AT 11,23;INK 2; PAPER 6; CHR$ 145
+PRINT AT 12,24;INK 2; PAPER 6; CHR$ 145
+PRINT AT 13,26;INK 2; PAPER 6; CHR$ 145
+DrawSemi(11,15,18,6,6,143)
+DrawSemi(10,15,18,6,6,143)
+DrawSemi( 9,15,18,4,6,143)
+DrawSemi( 8,15,18,4,6,143)
+PRINT AT 14,8;INK 4; CHR$ 143
+PRINT AT 13,9;INK 4; CHR$ 143
+PRINT AT 12,10;INK 4; CHR$ 143
+PRINT AT 11,11;INK 4; CHR$ 143
+PRINT AT 11,19;INK 4; CHR$ 143
+PRINT AT 12,20;INK 4; CHR$ 143
+PRINT AT 13,21;INK 4; CHR$ 143
+PRINT AT 14,22;INK 4; CHR$ 143
+DrawSemi( 7,15,18,5,6,143)
+DrawSemi( 6,15,18,5,6,143)
+PRINT AT 12,13;INK 5; CHR$ 143
+PRINT AT 12,17;INK 5; CHR$ 143
+PRINT AT 14,12;INK 5; CHR$ 143
+PRINT AT 15,11;INK 5; CHR$ 143
+PRINT AT 16,9;INK 5; CHR$ 143
+PRINT AT 16,21;INK 5; CHR$ 143
+PRINT AT 15,19;INK 5; CHR$ 143
+PRINT AT 14,18;INK 5; CHR$ 143
+DrawSemi( 5,15,18,1,6,143)
+DrawSemi( 4,15,18,1,6,143)
+DrawSemi( 3,15,18,1,3,145)
+DrawSemi( 2,15,18,1,3,145)
+
+
+PAUSE 30
+
+REM Loopy the people
 FOR x=1 TO 20
-    ' Create a string with our @ and the current person
-    LET s$=" @" + n$(i(x))
-    pc:
-    LET cl=(RND*6)+1
-    IF cl=lc THEN GOTO pc
-    LET lc=cl
-    FOR r=0 TO 20
-      LET cr=(RND*6)+1
-      PRINT INK cr;AT x+1, r;CHR$ 144
-      IF r > 0 THEN PRINT INK cl;AT x+1,r-1;s$(r)
-      IF r >= LEN(s$) THEN PRINT AT x+1,r-1; " "
-      PAUSE 2
-    NEXT r
-    PRINT AT x+1,r-1; " "
-    PAUSE 10
+  CentreText(CHR$ 146 + n$(i(x)),x+1,7,1)
+  PAUSE 10
 NEXT x
 
-BORDER 7
-POKE 23606,0:POKE 23607,60
 PRINT AT 0,0; BOLD 1; INK 7; BRIGHT 1;"#FF orderer by Jim Blimey"
-PAPER 7: BRIGHT 0
+BORDER 7: PAPER 7: BRIGHT 0
 PRINT AT 22,0; "                                "
-PRINT AT 23,0;INK 0; CHR$ 145; " Never ever eat pears, 30:1    "
+PRINT AT 23,0;INK 0; CHR$ 144; " Rod Jane Freddy ready, 30:1   "
 PAUSE 0
 
 STOP
-
-fontdata:
-ASM
-  defb 0,0,0,0,0,0,0,0
-  defb 0,8,8,8,8,0,8,0
-  defb 80,80,80,0,0,0,0,0
-  defb 80,80,248,80,248,80,80,0
-  defb 32,120,160,112,40,240,32,0
-  defb 192,200,16,32,64,152,24,0
-  defb 64,160,64,168,144,152,96,0
-  defb 16,32,64,0,0,0,0,0
-  defb 16,32,64,64,64,32,16,0
-  defb 64,32,16,16,16,32,64,0
-  defb 32,168,112,32,112,168,32,0
-  defb 0,32,32,248,32,32,0,0
-  defb 0,0,0,0,0,32,32,64
-  defb 0,0,0,120,0,0,0,0
-  defb 0,0,0,0,0,96,96,0
-  defb 0,0,8,16,32,64,128,0
-  defb 112,136,152,168,200,136,112,0
-  defb 32,96,160,32,32,32,248,0
-  defb 112,136,8,16,96,128,248,0
-  defb 112,136,8,48,8,136,112,0
-  defb 16,48,80,144,248,16,16,0
-  defb 248,128,224,16,8,16,224,0
-  defb 48,64,128,240,136,136,112,0
-  defb 248,136,16,32,32,32,32,0
-  defb 112,136,136,112,136,136,112,0
-  defb 112,136,136,120,8,16,96,0
-  defb 0,0,32,0,0,32,0,0
-  defb 0,0,32,0,0,32,32,64
-  defb 24,48,96,192,96,48,24,0
-  defb 0,0,248,0,248,0,0,0
-  defb 192,96,48,24,48,96,192,0
-  defb 112,136,8,16,32,0,32,0
-  defb 112,136,8,104,168,168,112,0
-  defb 32,80,136,136,248,136,136,0
-  defb 240,72,72,112,72,72,240,0
-  defb 48,72,128,128,128,72,48,0
-  defb 224,80,72,72,72,80,224,0
-  defb 248,128,128,240,128,128,248,0
-  defb 248,128,128,240,128,128,128,0
-  defb 112,136,128,184,136,136,112,0
-  defb 136,136,136,248,136,136,136,0
-  defb 112,32,32,32,32,32,112,0
-  defb 56,16,16,16,144,144,96,0
-  defb 136,144,160,192,160,144,136,0
-  defb 128,128,128,128,128,128,248,0
-  defb 136,216,168,168,136,136,136,0
-  defb 136,200,200,168,152,152,136,0
-  defb 112,136,136,136,136,136,112,0
-  defb 240,136,136,240,128,128,128,0
-  defb 112,136,136,136,168,144,104,0
-  defb 240,136,136,240,160,144,136,0
-  defb 112,136,128,112,8,136,112,0
-  defb 248,32,32,32,32,32,32,0
-  defb 136,136,136,136,136,136,112,0
-  defb 136,136,136,136,80,80,32,0
-  defb 136,136,136,168,168,216,136,0
-  defb 136,136,80,32,80,136,136,0
-  defb 136,136,136,112,32,32,32,0
-  defb 248,8,16,32,64,128,248,0
-  defb 112,64,64,64,64,64,112,0
-  defb 0,0,128,64,32,16,8,0
-  defb 112,16,16,16,16,16,112,0
-  defb 32,80,136,0,0,0,0,0
-  defb 0,0,0,0,0,0,248,0
-  defb 64,32,16,0,0,0,0,0
-  defb 0,0,112,8,120,136,120,0
-  defb 128,128,176,200,136,200,176,0
-  defb 0,0,112,136,128,136,112,0
-  defb 8,8,104,152,136,152,104,0
-  defb 0,0,112,136,248,128,112,0
-  defb 16,40,32,248,32,32,32,0
-  defb 0,0,104,152,152,104,8,112
-  defb 128,128,240,136,136,136,136,0
-  defb 32,0,96,32,32,32,112,0
-  defb 16,0,48,16,16,16,144,96
-  defb 64,64,72,80,96,80,72,0
-  defb 96,32,32,32,32,32,112,0
-  defb 0,0,208,168,168,168,168,0
-  defb 0,0,176,200,136,136,136,0
-  defb 0,0,112,136,136,136,112,0
-  defb 0,0,176,200,200,176,128,128
-  defb 0,0,104,152,152,104,8,8
-  defb 0,0,176,200,128,128,128,0
-  defb 0,0,120,128,240,8,240,0
-  defb 64,64,240,64,64,72,48,0
-  defb 0,0,144,144,144,144,104,0
-  defb 0,0,136,136,136,80,32,0
-  defb 0,0,136,168,168,168,80,0
-  defb 0,0,136,80,32,80,136,0
-  defb 0,0,136,136,152,104,8,112
-  defb 0,0,248,16,32,64,248,0
-  defb 24,32,32,64,32,32,24,0
-  defb 32,32,32,0,32,32,32,0
-  defb 192,32,32,16,32,32,192,0
-  defb 64,168,16,0,0,0,0,0
-  defb 0,0,32,80,248,0,0,0
-END ASM
