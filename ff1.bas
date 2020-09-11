@@ -50,7 +50,7 @@ LET n$(11)="zx81adventures"
 LET n$(12)="JAMOGRAD"
 LET n$(13)="stewie55uk"
 LET n$(14)="mrbiffo"
-LET n$(15)="DigitalGhostKA"
+LET n$(15)="Ghost_In_Exile"
 LET n$(16)="tobobobo"
 LET n$(17)="AfRetro"
 LET n$(18)="SpectrumTinted"
@@ -85,7 +85,7 @@ LET n$(4)="3wojis"
 LET n$(5)="ZXDev2015"
 LET n$(6)="JonnBlanchard"
 LET n$(7)="SquaredSeven"
-LET n$(8)="60sPsychoMods"
+LET n$(8)="electron_greg"
 LET n$(9)="RetroManiaGT1"
 LET n$(10)="zxkim811"
 LET n$(11)="shadowinthevoid"
@@ -103,106 +103,152 @@ GOTO start
 fontdata:
 ASM
   defb 0,0,0,0,0,0,0,0
-  defb 16,56,56,56,16,0,16,0
-  defb 102,51,51,0,0,0,0,0
-  defb 102,102,255,102,102,255,102,102
-  defb 20,126,212,126,149,126,20,0
-  defb 96,148,104,16,44,82,140,0
-  defb 48,72,48,72,142,140,120,0
-  defb 12,12,24,0,0,0,0,0
-  defb 1,2,4,4,4,4,2,1
-  defb 128,64,32,32,32,32,64,128
-  defb 0,84,56,254,56,84,0,0
-  defb 0,24,24,126,24,24,0,0
-  defb 0,0,0,0,0,0,48,96
-  defb 0,0,0,126,0,0,0,0
-  defb 0,0,0,0,0,0,48,0
-  defb 1,2,4,8,16,32,64,128
-  defb 124,134,138,146,162,194,124,0
-  defb 16,48,112,16,16,16,124,0
-  defb 120,132,8,48,64,128,252,0
-  defb 120,132,4,56,4,132,120,0
-  defb 128,68,72,72,252,8,8,0
-  defb 254,128,128,124,2,130,124,0
-  defb 122,132,128,188,194,130,124,0
-  defb 254,132,8,16,56,16,16,0
-  defb 124,130,124,130,130,130,124,0
-  defb 124,130,134,122,2,130,124,0
-  defb 0,48,0,0,0,48,0,0
-  defb 0,48,0,0,0,48,32,0
-  defb 8,16,32,64,32,16,8,0
-  defb 0,0,126,0,126,0,0,0
-  defb 32,16,8,4,8,16,32,0
-  defb 124,130,4,8,16,0,16,0
-  defb 124,130,154,170,170,158,124,0
-  defb 248,68,66,254,66,66,198,0
-  defb 252,66,66,252,66,66,252,0
-  defb 122,132,128,128,128,130,124,0
-  defb 252,66,66,66,66,66,252,0
-  defb 254,66,64,112,192,66,254,0
-  defb 254,66,64,112,192,64,224,0
-  defb 122,132,128,128,156,130,126,2
-  defb 130,68,68,94,244,68,130,0
-  defb 16,8,8,8,8,8,4,0
-  defb 126,8,4,4,4,132,120,0
-  defb 204,68,72,240,72,68,198,0
-  defb 192,64,64,64,64,66,254,0
-  defb 198,106,90,74,74,66,198,0
-  defb 204,100,84,84,84,84,204,0
-  defb 120,132,132,132,132,132,120,0
-  defb 248,68,68,248,64,64,224,0
-  defb 120,132,132,132,132,140,125,2
-  defb 252,66,66,252,66,66,198,0
-  defb 116,136,128,120,4,132,120,0
-  defb 124,84,16,16,16,16,48,0
-  defb 198,68,68,130,130,130,124,0
-  defb 204,68,68,68,68,40,16,0
-  defb 198,66,66,74,90,106,204,0
-  defb 130,68,40,16,40,68,130,0
-  defb 204,68,68,56,16,16,48,0
-  defb 254,132,8,16,32,66,254,0
-  defb 28,16,16,16,16,16,28,0
-  defb 128,64,32,16,8,4,2,1
-  defb 56,8,8,8,8,8,56,0
-  defb 0,0,16,56,108,198,0,0
-  defb 0,0,0,0,0,0,0,255
-  defb 48,48,24,0,0,0,0,0
-  defb 0,0,122,4,124,132,122,0
-  defb 128,64,64,92,98,66,188,0
-  defb 0,0,122,132,128,130,124,0
-  defb 2,4,116,140,132,132,122,0
-  defb 0,0,188,66,124,64,62,0
-  defb 52,72,64,224,64,64,128,0
-  defb 0,0,122,132,140,116,4,120
-  defb 128,64,120,68,68,68,136,0
-  defb 16,0,16,8,8,8,4,0
-  defb 0,16,0,16,8,8,136,112
-  defb 192,64,72,80,224,80,200,0
-  defb 48,16,16,16,16,16,56,0
-  defb 0,0,172,84,84,68,204,0
-  defb 0,0,184,68,68,68,204,0
-  defb 0,0,120,132,132,132,120,0
-  defb 0,0,184,68,68,120,64,128
-  defb 0,0,116,136,136,120,4,2
-  defb 0,0,176,72,64,64,64,0
-  defb 0,0,120,128,112,8,240,0
-  defb 0,32,16,124,16,16,8,0
-  defb 0,0,144,72,132,132,120,0
-  defb 0,0,130,68,68,40,16,0
-  defb 0,0,132,66,82,106,70,0
-  defb 0,0,136,80,32,80,136,0
-  defb 0,0,130,68,68,60,4,120
-  defb 0,0,124,136,48,68,248,0
-  defb 14,16,16,96,16,16,14,0
-  defb 24,24,24,0,24,24,24,0
-  defb 224,16,16,12,16,16,224,0
-  defb 0,0,112,154,12,0,0,0
-  defb 0,0,24,60,102,255,0,0
+  defb 56,56,56,56,56,0,56,0
+  defb 108,108,36,72,0,0,0,0
+  defb 68,254,68,68,68,254,68,0
+  defb 16,124,64,124,4,124,16,0
+  defb 226,164,232,16,46,74,142,0
+  defb 48,72,64,32,80,72,116,0
+  defb 56,56,8,48,0,0,0,0
+  defb 24,48,96,96,96,48,24,0
+  defb 96,48,24,24,24,48,96,0
+  defb 32,168,112,32,112,168,32,0
+  defb 0,16,16,124,24,24,0,0
+  defb 0,0,0,0,56,56,8,48
+  defb 0,0,0,124,124,0,0,0
+  defb 0,0,0,0,56,56,56,0
+  defb 2,4,8,16,32,64,128,0
+  defb 248,136,152,168,200,200,248,0
+  defb 224,32,32,32,32,32,248,0
+  defb 252,4,4,252,192,192,252,0
+  defb 120,8,8,120,24,24,248,0
+  defb 136,136,136,136,252,24,24,0
+  defb 248,128,128,248,24,152,248,0
+  defb 248,136,128,248,200,200,248,0
+  defb 248,136,16,32,96,96,96,0
+  defb 248,136,136,248,200,200,248,0
+  defb 248,136,136,248,24,152,248,0
+  defb 0,56,56,0,56,56,0,0
+  defb 0,56,56,0,56,56,8,48
+  defb 8,16,32,192,32,16,8,0
+  defb 0,124,124,0,124,124,0,0
+  defb 128,64,32,24,32,64,128,0
+  defb 126,66,2,30,16,0,16,0
+  defb 60,36,60,0,0,0,0,0
+  defb 248,136,252,132,196,196,196,0
+  defb 248,136,252,132,196,196,252,0
+  defb 252,132,128,192,192,196,252,0
+  defb 248,132,132,196,196,196,248,0
+  defb 252,128,240,128,192,192,252,0
+  defb 252,128,248,128,192,192,192,0
+  defb 252,132,128,156,196,196,252,0
+  defb 132,132,252,132,196,196,196,0
+  defb 32,32,32,48,48,48,48,0
+  defb 4,4,4,12,12,140,120,0
+  defb 132,136,144,240,200,196,196,0
+  defb 128,128,128,192,192,192,252,0
+  defb 252,146,146,146,210,210,210,0
+  defb 228,148,148,148,212,212,204,0
+  defb 252,132,132,132,196,196,252,0
+  defb 252,132,132,252,192,192,192,0
+  defb 252,132,132,148,212,200,244,0
+  defb 252,132,132,252,200,196,196,0
+  defb 252,128,128,252,12,12,252,0
+  defb 252,32,32,32,48,48,48,0
+  defb 132,132,132,196,196,196,252,0
+  defb 132,132,196,196,68,40,16,0
+  defb 130,130,146,146,210,210,254,0
+  defb 132,72,48,48,72,132,132,0
+  defb 132,132,132,252,32,48,48,0
+  defb 252,8,16,32,64,192,252,0
+  defb 120,64,64,64,64,64,120,0
+  defb 128,64,32,16,8,4,2,0
+  defb 60,4,4,4,4,4,60,0
+  defb 0,16,56,108,198,0,0,0
+  defb 0,0,0,0,0,0,0,0
+  defb 0,0,0,0,0,0,0,0
+  defb 0,0,124,4,124,68,124,0
+  defb 64,64,124,68,68,68,124,0
+  defb 0,0,124,64,64,64,124,0
+  defb 4,4,124,68,68,68,124,0
+  defb 0,0,124,68,124,64,124,0
+  defb 60,32,120,32,32,32,32,0
+  defb 0,0,124,68,68,124,4,124
+  defb 64,64,124,68,68,68,68,0
+  defb 24,0,24,24,24,24,24,0
+  defb 0,8,0,8,8,8,72,120
+  defb 64,64,72,80,96,80,72,0
+  defb 24,24,24,24,24,24,24,0
+  defb 0,0,254,146,146,146,146,0
+  defb 0,0,124,68,68,68,68,0
+  defb 0,0,124,68,68,68,124,0
+  defb 0,0,124,68,68,124,64,64
+  defb 0,0,124,68,68,124,4,4
+  defb 0,0,124,68,64,64,64,0
+  defb 0,0,124,64,124,4,124,0
+  defb 0,32,124,32,32,32,60,0
+  defb 0,0,36,36,36,36,60,0
+  defb 0,0,68,68,68,40,16,0
+  defb 0,0,130,146,146,146,254,0
+  defb 0,0,68,40,16,40,68,0
+  defb 0,0,68,68,68,124,4,124
+  defb 0,0,124,8,16,32,124,0
+  defb 0,0,0,0,0,0,0,0
+  defb 0,16,16,16,16,16,16,16
+  defb 0,0,0,0,0,0,0,0
+  defb 0,0,0,0,0,0,0,0
+  defb 0,0,0,0,0,0,0,0
+
 END ASM
+
+SUB paint (x as uByte,y as uByte, width as uByte, height as uByte, attribute as ubyte)
+REM Copyleft Britlion. Feel free to use as you will. Please attribute me if you use this, however!
+
+Asm
+    ld      a,(IX+7)   ;ypos
+    rrca
+    rrca
+    rrca               ; Multiply by 32
+    ld      l,a        ; Pass to L
+    and     3          ; Mask with 00000011
+    add     a,88       ; 88 * 256 = 22528 - start of attributes. Change this if you are working with a buffer or somesuch.
+    ld      h,a        ; Put it in the High Byte
+    ld      a,l        ; We get y value *32
+    and     224        ; Mask with 11100000
+    ld      l,a        ; Put it in L
+    ld      a,(IX+5)   ; xpos 
+    add     a,l        ; Add it to the Low byte
+    ld      l,a        ; Put it back in L, and we're done. HL=Address.
+
+    push HL            ; save address
+    LD A, (IX+13)      ; attribute
+    LD DE,32
+    LD c,(IX+11)       ; height
+
+    BLPaintHeightLoop: 
+    LD b,(IX+9)        ; width
+
+    BLPaintWidthLoop:
+    LD (HL),a          ; paint a character
+    INC L              ; Move to the right (Note that we only would have to inc H if we are crossing from the right edge to the left, and we shouldn't be needing to do that)
+    DJNZ BLPaintWidthLoop
+
+    BLPaintWidthExitLoop:
+    POP HL             ; recover our left edge
+    DEC C
+    JR Z, BLPaintHeightExitLoop
+
+    ADD HL,DE          ; move 32 down
+    PUSH HL            ; save it again
+    JP BLPaintHeightLoop
+
+    BLPaintHeightExitLoop:
+end asm
+END SUB
 
 start:
 BORDER 7: PAPER 7: BRIGHT 0: INK 0: CLS
-PRINT AT 23,0;CHR$ 127 + " 1982 No Idea Ltd"
+PRINT AT 23,0;CHR$ 127 + " 1994 Chris Waddle Ltd"
 PAUSE 0
 CLS
 PRINT AT 23,0;"RUN"
@@ -237,23 +283,44 @@ FOR x=1 TO 20
     LET i(x)=c
 NEXT x
 
-FOR y=1 TO 20
-  FOR c=1 TO 5
-    LET s$=CHR$ 146 + n$(i(y))
-    FOR x=1 TO 5
-      PRINT INK RND *7; AT y+1,0;s$
+FOR c=1 TO 20
+    'LET cl=(RND*6)+1
+    LET cl=2
+    IF c > 4 AND c < 9 THEN LET cl=3
+    IF c > 8 AND c < 13 THEN LET cl=4
+    IF c > 12 AND c < 17 THEN LET cl=5
+    IF c > 16 THEN LET cl=6
+    REM Create a string with our @ and the current person
+    LET s$="@" + n$(i(c))
+    PRINT INK 0;AT c+1,0;s$
+    FOR y=0 TO 3
+      FOR x=0 TO LEN s$
+        IF x>1 THEN paint(x-2,c+1,1,1,0)
+        IF x>0 THEN paint(x-1,c+1,1,1,cl)
+        paint(x,c+1,1,1,64+cl)
+        PAUSE 1
+      NEXT x
+      FOR x=LEN s$ TO 0 STEP -1
+        IF x<LEN s$-1 THEN paint(x+2,c+1,1,1,0)
+        IF x<LEN s$ THEN paint(x+1,c+1,1,1,cl)
+        paint(x,c+1,1,1,64+cl)
+        PAUSE 1
+      NEXT x
+    NEXT y
+    REM One more to reveal
+    FOR x=0 TO LEN s$
+      paint(x,c+1,1,1,64+cl)
+      PAUSE 1
     NEXT x
-    PRINT INK 0; AT y+1,0;s$
-    IF c=5 THEN PRINT INK 1+(RND *6); AT y+1,0;s$
-  NEXT c
-NEXT y
+    PAUSE 5
+NEXT c
 
 POKE 23606,0
 POKE 23607,60
 
 PRINT AT 0,0; BOLD 1; INK 7; BRIGHT 1;"#FF orderer by Jim Blimey"
 BRIGHT 0
-PRINT AT 23,0;INK 7; "0 Yup, 30:1"
+PRINT AT 23,0;INK 7; "C Anyone fancy a pint?, 30:1"
 PAUSE 0
 
 STOP
